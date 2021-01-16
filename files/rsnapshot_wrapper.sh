@@ -19,7 +19,7 @@ RSNAPSHOT_BIN=$(which rsnapshot)
 PERL_BIN=$(which perl)
 
 DATE=$(date +"%y-%m-%d_%H:%M:%S")
-REPORT_FILE="${WWWROOT}/rsnapshot-report-${BACKUP_LEVEL}-${DATE}"
+REPORT_FILE="${WWWROOT}/rsnapshot-report-${BACKUP_LEVEL}-${DATE}.txt"
 
 # create the report directory
 if [[ ! -d "${WWWROOT}" ]] ; then
