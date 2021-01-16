@@ -1,0 +1,94 @@
+<%- | String $rsnapshot_directory,
+      String $full_ssh_args,
+| -%>
+### File managed by puppet
+#
+#################################################
+# rsnapshot.conf - rsnapshot configuration file #
+#################################################
+#                                               #
+# PLEASE BE AWARE OF THE FOLLOWING RULES:       #
+#                                               #
+# This file requires tabs between elements      #
+#                                               #
+# Directories require a trailing slash:         #
+#   right: /home/                               #
+#   wrong: /home                                #
+#                                               #
+#################################################
+
+config_version	1.2
+
+# All snapshots will be stored under this root directory.
+#
+snapshot_root	<%= $rsnapshot_directory %>
+no_create_root	0
+
+#################################
+# EXTERNAL PROGRAM DEPENDENCIES #
+#################################
+
+# LINUX USERS:   Be sure to uncomment "cmd_cp". This gives you extra features.
+
+cmd_cp		/bin/cp
+cmd_rm		/bin/rm
+cmd_rsync	/usr/bin/rsync-no-vanished
+cmd_ssh	  /usr/bin/ssh
+
+cmd_du		/usr/bin/du
+
+# We don't use rsnapshot-diff
+#cmd_rsnapshot_diff	/usr/local/bin/rsnapshot-diff
+
+#cmd_preexec	/path/to/preexec/script
+#cmd_postexec	/path/to/postexec/script
+
+############################################
+#              GLOBAL OPTIONS              #
+############################################
+
+# Verbose level, 1 through 5.
+# 1     Quiet           Print fatal errors only
+# 2     Default         Print errors and warnings only
+# 3     Verbose         Show equivalent shell commands being executed
+# 4     Extra Verbose   Show extra verbose information
+# 5     Debug mode      Everything
+#
+verbose		4
+
+# Same as "verbose" above, but controls the amount of data sent to the logfile
+loglevel	3
+
+# If you enable this, data will be written to the file you specify. The
+# amount of data written is controlled by the "loglevel" parameter.
+#
+logfile	/var/log/rsnapshot
+
+lockfile	/var/run/rsnapshot.pid
+
+# Default rsync args. All rsync commands have at least these options set.
+#
+#rsync_short_args	-a
+#rsync_long_args	--delete --numeric-ids --relative --delete-excluded
+
+# ssh has no args passed by default, but you can specify some here.
+ssh_args	<%= $full_ssh_args -%>
+
+# Default arguments for the "du" program (for disk space reporting).
+#du_args	-csh
+
+#one_fs		0
+
+# If your version of rsync supports --link-dest, consider enable this.
+link_dest	1
+
+# When sync_first is enabled, it changes the default behaviour of rsnapshot.
+# The default is 0 (off).
+#sync_first	0
+
+use_lazy_deletes	1
+
+# Number of rsync re-tries.
+#rsync_numtries 0
+
+exclude		"lost+found"

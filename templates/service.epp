@@ -1,0 +1,14 @@
+<%- | String $rsnapshot_wrapper_path,
+      String $reports_path,
+| -%>
+# File managed by Puppet
+# Manual changes will be overwritten
+[Unit]
+Description=rsnapshot (%I) backup
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=idle
+ExecStart=<%= $rsnapshot_wrapper_path %> %I <%= $reports_path %>

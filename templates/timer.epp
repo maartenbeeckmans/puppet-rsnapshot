@@ -1,0 +1,16 @@
+<%- | String $name,
+      String $on_calendar,
+| -%>
+# File managed by Puppet
+# Manual changes will be overwritten
+[Unit]
+Description=rsnapshot <%= $name %> backup
+Documentation=man:rsnapshot(1)
+
+[Timer]
+OnCalendar=<%= $on_calendar %>
+Persistent=true
+Unit=rsnapshot@.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+<%- | Hash $intervals | -%>
+### File managed by puppet
+#########################################
+#           BACKUP INTERVALS            #
+# Must be unique and in ascending order #
+# i.e. hourly, daily, weekly, etc.      #
+#########################################
+
+<% $intervals.each |String $interval, Integer $retain| { -%>
+interval	<%= $interval %>	<%= $retain %>
+<% } -%>

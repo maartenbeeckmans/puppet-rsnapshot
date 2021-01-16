@@ -1,0 +1,33 @@
+---
+rsnapshot::package_name: 'rsnapshot'
+rsnapshot::package_ensure: 'present'
+rsnapshot::config_file: '/etc/rsnapshot.conf'
+rsnapshot::rsnapshot_directory: '/srv/rsnapshot/'
+rsnapshot::ssh_args: '-T -x -p 22' # no pseudo-tty, no X forwarding
+rsnapshot::rsnapshot_keyfile: 'rsnapshot_key'
+rsnapshot::known_hosts_file: '/etc/rsnapshot_known_hosts'
+rsnapshot::intervals:
+  hourly: 24
+  daily: 7
+  weekly: 4
+  yearly: 12
+rsnapshot::timers:
+  hourly:
+    on_calendar: '*-*-* *:00:00'
+  daily:
+    on_calendar: '05:30'
+  weekly:
+    on_calendar: 'Monday  *-*-* 04:30:00'
+  monthly:
+    on_calendar: '*-*-1 03:30:00'
+rsnapshot::rsnapshot_wrapper_path: '/usr/local/bin/rsnapshot_wrapper.sh'
+rsnapshot::reports_path: '/var/www/html/htdocs'
+rsnapshot::service_ensure: 'running'
+rsnapshot::service_enable: true
+rsnapshot::user_ensure: present
+rsnapshot::user_authorized_keys: {}
+rsnapshot::user_user_name: 'rsnapshot'
+rsnapshot::user_public_key_type: 'ssh-rsa'
+rsnapshot::user_user_home: '/opt/rsnapshot'
+rsnapshot::user_system_user: true
+rsnapshot::user_user_comment: 'Rsnapshot User'
