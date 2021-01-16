@@ -13,7 +13,7 @@ define rsnapshot::backup (
   $_extra_opts_str = join(flatten([$_rsync_long_opts, $extra_opts]), '\t')
   concat::fragment { "Backups - ${title}":
     target  => $config_file,
-    content => "backup\t${source}\t${target_dir}\t{_extra_opts_str}\n",
+    content => "backup\t${source}\t${target_dir}\t${_extra_opts_str}\n",
     order   => '50',
   }
 }

@@ -18,7 +18,7 @@ PATH=/bin:/sbin/:/usr/bin:/usr/sbin
 RSNAPSHOT_BIN=$(which rsnapshot)
 PERL_BIN=$(which perl)
 
-DATE=$(date +"%y/%m/%d_%H:%M:%S")
+DATE=$(date +"%y-%m-%d_%H:%M:%S")
 REPORT_FILE="${WWWROOT}/rsnapshot-report-${BACKUP_LEVEL}-${DATE}"
 
 # create the report directory

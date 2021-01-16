@@ -29,15 +29,12 @@ no_create_root	0
 #################################
 
 # LINUX USERS:   Be sure to uncomment "cmd_cp". This gives you extra features.
-
-cmd_cp		/bin/cp
-cmd_rm		/bin/rm
+cmd_cp		/usr/bin/cp
+cmd_rm		/usr/bin/rm
 cmd_rsync	/usr/bin/rsync-no-vanished
-cmd_ssh	  /usr/bin/ssh
-
+cmd_ssh		/usr/bin/ssh
 cmd_du		/usr/bin/du
 
-# We don't use rsnapshot-diff
 #cmd_rsnapshot_diff	/usr/local/bin/rsnapshot-diff
 
 #cmd_preexec	/path/to/preexec/script

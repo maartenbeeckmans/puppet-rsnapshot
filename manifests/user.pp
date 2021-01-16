@@ -23,7 +23,7 @@ class rsnapshot::user (
 
   $_authorized_keys_defaults = {
     ensure => $ensure,
-    user   => $user_home,
+    user   => $user_name,
     type   => $public_key_type,
   }
   create_resources('ssh_authorized_key', $authorized_keys, $_authorized_keys_defaults)
@@ -44,10 +44,10 @@ class rsnapshot::user (
       ensure  => present,
       mode    => '0755',
       owner   => $user_name,
-      source  => 'puppet:///modules/rsnapshot/rsync_wrapper.sh',
+      source  => 'puppet:///modules/rsnapshot/rsync-wrapper.sh',
       require => User[$user_name],
     }
-    sudo::confg{ 'rsnapthost-sync-wrapper':
+    sudo::conf{ 'rsnapthost-sync-wrapper':
       content => "Defaults:${user_name} !requiretty\n${user_name} ALL=(ALL) NOPASSWD:/usr/bin/rsync\n",
     }
   }
