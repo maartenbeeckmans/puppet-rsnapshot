@@ -10,7 +10,7 @@ rsnapshot::intervals:
   hourly: 24
   daily: 7
   weekly: 4
-  yearly: 12
+  monthly: 12
 rsnapshot::timers:
   hourly:
     on_calendar: '*-*-* *:00:00'
