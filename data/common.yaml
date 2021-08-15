@@ -7,13 +7,10 @@ rsnapshot::ssh_args: '-T -x -p 22' # no pseudo-tty, no X forwarding
 rsnapshot::rsnapshot_keyfile: 'rsnapshot_key'
 rsnapshot::known_hosts_file: '/etc/rsnapshot_known_hosts'
 rsnapshot::intervals:
-  hourly: 24
   daily: 7
   weekly: 4
   monthly: 12
 rsnapshot::timers:
-  hourly:
-    on_calendar: '*-*-* *:00:00'
   daily:
     on_calendar: '05:30'
   weekly:
